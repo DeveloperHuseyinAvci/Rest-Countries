@@ -1,0 +1,17 @@
+.card-content .card:hover{
+    cursor: pointer;
+    animation: cardAnimation 1s linear infinite;
+   
+}
+
+@keyframes cardAnimation {
+   
+    50%{
+        opacity: 0.5;
+    }
+    
+  }
+
+  .card-content .card:active{
+    cursor: help;
+}

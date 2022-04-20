@@ -41,17 +41,17 @@
       </div>
     </nav>
 
-    <div class="container p-4 border border-dark">
-      <div class="row border border border-danger">
+    <div class="container p-4">
+      <div class="d-flex justify-content-around flex-lg-row">
 
-      <div class="input-group col">
+      <div class="input-group w-50">
         <span class="input-group-text bg-light border-end-0" id="addon-wrapping"><i class="fa-solid fa-magnifying-glass-location"></i></span>
         <input class="form-control bg-light border-start-0" placeholder="Search for a country..." type="text" />
       </div>
 
       <!-- responsivi ayarla -->
 
-      <div class="dropdown col">
+      <div class="dropdown ">
         <a class="btn btn-light border dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           Filter by Region
         </a>
@@ -68,12 +68,46 @@
     </div>
 
     <!-- Flags container js innetHTML -->
-    <div class="container mt-4" >
+    <div class="flag-cont container mt-4" style="display: block;" >
       <div class="card-content row justify-content-center">
 
       </div>
     </div>
 
+    <!-- Detail Container js innetHTML -->
+
+
+
+<div class="detail-card container mt-3" style="display: none;">
+          <button class="btn btn-outline-info shadow w-25"><i class="fa-solid fa-share"></i><span class="m-2">Back</span></button>  
+
+        <div class="detail-card-content row">
+            <div class="flag-img mt-5 col-md-6">
+                <img class="card-detail-img w-100" src="../design/desktop-design-home-dark.jpg" alt="country-flags">
+            </div>
+
+            <div class="card-body p-4 col-md-4" style="width: 0rem;">
+                <h3 class="card-title fw-bolder">Belgium</h3>
+                <p class="card-text fw-bold">Native Name: <span class="fw-lighter">Belgie</span></p>
+                <p class="card-text fw-bold">Population: <span class="fw-lighter">11.379.511</span></p>
+                <p class="card-text fw-bold">Region: <span class="fw-lighter">Europe</span></p>
+                <p class="card-text fw-bold">Sub Region: <span class="fw-lighter">Western Europe</span></p>
+                <p class="card-text fw-bold">Capital: <span class="fw-lighter">Brussels</span></p>
+                <p class="card-text fw-bold">Top Level Domain: <span class="fw-lighter">be</span></p>
+                <p class="card-text fw-bold">Currencies: <span class="fw-lighter">Euro</span></p>
+                <p class="card-text fw-bold">Languages: <span class="fw-lighter">Dutch,French,German</span></p>
+
+                <div class="border-container">
+                    <p class="fw-bold">Border Countries <i class="fa-solid fa-angles-down" style="color: darkorange;"></i></p>
+                    <button class="btn btn-outline-info shadow m-1">France</button>
+                    <button class="btn btn-outline-info shadow m-1">Germany</button>
+                    <button class="btn btn-outline-info shadow m-1">Netherlands</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
     
 

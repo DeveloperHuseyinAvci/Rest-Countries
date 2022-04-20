@@ -6,8 +6,15 @@ class CountryApi {
 
 
     dataObject.forEach(object => {
-      // console.log(object);
-      // 0 indexi olmayanlara then chact hata kontrolü uygula ve buna patikadan bakabilirsin 
+      //console.log(object);
+      /* try{
+        console.log(object.flags.svg);
+      }catch(error){
+        console.log(object.flags.png);
+      }finally{
+
+      } */
+      // 0 indexi olmayanlara (try catch) hata kontrolü uygula patika js kursundan bakabilirsin
       const cardData = new CardContent(
         object.flags,
         object.name,
@@ -17,14 +24,13 @@ class CountryApi {
         object.nativeName,
         object.subregion,
         object.topLevelDomain,
-        object.currencies, // hata kontrolü uygula (then chach)
-        object.languages, // hata kontrolü uygula (then chach)
-        object.borders // hata kontrolü uygula  (then chach)
+        object.currencies, // hata kontrolü uygula (try & catch)
+        object.languages, // hata kontrolü uygula (try & catch)
+        object.borders // hata kontrolü uygula  (try & catch)
 
       )
       // console.log(cardData);
     });
-
 
   }
 }
@@ -49,7 +55,7 @@ class CardContent {
       this.languages = languages,
       this.borderCountry = borders
     this.cardContent()
-    this.cardDetail()
+    this.cardDetail
   }
 
   cardContent() {
@@ -57,7 +63,6 @@ class CardContent {
     const card = document.createElement('div')
     card.className = ('card p-0 shadow m-3')
     card.style = "width: 14rem"
-    cardContent.appendChild(card)
     card.innerHTML = `<img src="${this.flagImg.svg}" class="card-img-top w-100 h-100" alt="countries-img" />
         <div class="card-body">
           <h5 class="card-title fw-bolder p-2" id="country-name">
@@ -77,14 +82,48 @@ class CardContent {
             >
           </p>
         </div>`
+    cardContent.appendChild(card)
+    card.addEventListener('click', this.cardDetail)
 
-    /* bootstrap ta ilk kutu boş ve gereksiz geliyor onu çöz*/
   }
+
   cardDetail() {
+    const allFlagContainer = document.querySelector('.flag-cont')
+    const detailCards = document.querySelector('.detail-card')
+    const detailCardContent = document.querySelector('.detail-card-content')
+    if(this.countryName === this.countryName){
+      allFlagContainer.style.display = "none"
+      detailCards.style.display = "block"
+      detailCardContent.innerHTML = `<div class="flag-img mt-5 col-md-6">
+      <img class="card-detail-img w-100" src="${this.flagImg.svg}" alt="country-flags">
+  </div>
 
-    //card detail buraya yazılacak 
+  <div class="card-body p-4 col-md-4" style="width: 0rem;">
+      <h3 class="card-title fw-bolder">Belgium</h3>
+      <p class="card-text fw-bold">Native Name: <span class="fw-lighter">Belgie</span></p>
+      <p class="card-text fw-bold">Population: <span class="fw-lighter">11.379.511</span></p>
+      <p class="card-text fw-bold">Region: <span class="fw-lighter">Europe</span></p>
+      <p class="card-text fw-bold">Sub Region: <span class="fw-lighter">Western Europe</span></p>
+      <p class="card-text fw-bold">Capital: <span class="fw-lighter">Brussels</span></p>
+      <p class="card-text fw-bold">Top Level Domain: <span class="fw-lighter">be</span></p>
+      <p class="card-text fw-bold">Currencies: <span class="fw-lighter">Euro</span></p>
+      <p class="card-text fw-bold">Languages: <span class="fw-lighter">Dutch,French,German</span></p>
+
+      <div class="border-container">
+          <p class="fw-bold">Border Countries <i class="fa-solid fa-angles-down" style="color: darkorange;"></i></p>
+          <button class="btn btn-outline-info shadow m-1">France</button>
+          <button class="btn btn-outline-info shadow m-1">Germany</button>
+          <button class="btn btn-outline-info shadow m-1">Netherlands</button>
+      </div>
+  </div>`
+  
+    }
+
+
   }
+
 }
 
-
 CardContent.prototype.cardContent()
+
+/* şuan ki yol çok efektif olmadı tüm dom elemanlarını bir class ta proporty olarak ekle ve öylelikle çağır */
