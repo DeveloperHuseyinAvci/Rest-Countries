@@ -113,9 +113,18 @@ class CardContent { // 0 indexi olmayanlara (try catch) hata kontrolü uygula pa
   
         <div class="border-container">
             <p class="fw-bold">Border Countries <i class="fa-solid fa-angles-down" style="color: darkorange;"></i></p>
-            <button class="btn btn-outline-info shadow m-1">${this.borderCountry}</button>
+            
         </div>
         </div>`
+
+        /* <button class="btn btn-outline-info shadow m-1">${this.borderCountry}</button> */
+
+        const borderContainer = document.querySelector('.border-container')
+        const borderButton = document.createElement('button')
+        borderButton.className = ('btn btn-outline-info shadow m-1')
+        borderButton.innerHTML = `${this.borderCountry[0]}`
+
+        borderContainer.appendChild(borderButton)
 
       const backBtn = document.querySelector('.back-btn')
       backBtn.addEventListener('click', () => {
