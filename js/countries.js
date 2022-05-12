@@ -1,12 +1,11 @@
 class CountryApi {
   constructor() {}
   async countryApiGet() {
-    const apiData = await fetch("https://restcountries.com/v2/all")
-    const dataObject = await apiData.json()
+    const apiData = await fetch("https://restcountries.com/v2/all");
+    const dataObject = await apiData.json();
 
-
-    dataObject.forEach(object => {
-      console.log(object);
+    dataObject.forEach((object) => {
+      //console.log(object);
       const cardData = new CardContent(
         object.flag,
         object.name,
@@ -18,52 +17,58 @@ class CountryApi {
         object.topLevelDomain,
         object.currencies, // hata kontrolü uygula (try & catch)
         object.languages, // hata kontrolü uygula (try & catch)
-        object.borders // hata kontrolü uygula  (try & catch)
-      )
-      // console.log(cardData);
+        object.borders, // hata kontrolü uygula  (try & catch)
+        object.cioc
+      );
     });
-
   }
 }
 
-CountryApi.prototype.countryApiGet()
+CountryApi.prototype.countryApiGet();
 
+class CardContent {
+  constructor(
+    flagImg,
+    countryName,
+    population,
+    region,
+    capital,
+    nativeName,
+    subregion,
+    topLevelDomain,
+    currencies,
+    languages,
+    borders,
+    cioc
+  ) {
+    try {
+      (this.flagImg = flagImg),
+        (this.countryName = countryName),
+        (this.population = population),
+        (this.region = region),
+        (this.capital = capital);
+      (this.nativeName = nativeName),
+        (this.subregion = subregion),
+        (this.topLevelDomain = topLevelDomain[0]),
+        (this.currencies = currencies[0].name),
+        (this.languages = languages[0].name),
+        (this.borderCountry = borders),
+        (this.cioc = cioc);
+    } catch (error) {
+      console.log("");
+    }
 
-class CardContent { // 0 indexi olmayanlara (try catch) hata kontrolü uygula patika js kursundan bakabilirsin
-  constructor(flagImg, countryName, population, region,
-    capital, nativeName, subregion, topLevelDomain, currencies,
-    languages, borders) {
-      try{
-        this.flagImg = flagImg,
-        this.countryName = countryName,
-        this.population = population,
-        this.region = region,
-        this.capital = capital
-        this.nativeName = nativeName,
-        this.subregion = subregion,
-        this.topLevelDomain = topLevelDomain[0],
-        this.currencies = currencies[0].name,
-        this.languages = languages[0].name
-        this.borderCountry = borders
-
-      }catch(error){
-        console.log(error);
-      }
-   
-      
-    this.cardContentFunc()
+    this.cardContentFunc();
   }
 
-
   cardContentFunc() {
-    
-    const inputGroup = document.querySelector('.input-group')
-    const dropDown = document.querySelector('.dropdown')
-    const cardContent = document.querySelector('.card-content')
-    const card = document.createElement('div')
+    const inputGroup = document.querySelector(".input-group");
+    const dropDown = document.querySelector(".dropdown");
+    const cardContent = document.querySelector(".card-content");
+    const card = document.createElement("div");
 
-    card.className = ('card p-0 shadow m-3')
-    card.style = "width: 14rem"
+    card.className = "card p-0 shadow m-3";
+    card.style = "width: 14rem";
     card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
         <div class="card-body">
           <h5 class="card-title fw-bolder p-2" id="country-name">
@@ -82,19 +87,21 @@ class CardContent { // 0 indexi olmayanlara (try catch) hata kontrolü uygula pa
               >${this.capital}</span
             >
           </p>
-        </div>`
+        </div>`;
 
-    cardContent.appendChild(card)
-    card.addEventListener('click', () => {
-      
-      const allFlagContainer = document.querySelector('.flag-cont')
-      const detailCards = document.querySelector('.detail-card')
-      const detailCardContent = document.querySelector('.detail-card-content')
+    cardContent.appendChild(card);
+    console.log(this.cioc);
+    // console.log(this.borderCountry === this.cioc);
+    
+    card.addEventListener("click", () => {
+      const allFlagContainer = document.querySelector(".flag-cont");
+      const detailCards = document.querySelector(".detail-card");
+      const detailCardContent = document.querySelector(".detail-card-content");
 
-      detailCards.style.display = "block"
-      allFlagContainer.style.display = "none"
-      inputGroup.style.display = 'none'
-      dropDown.style.display = 'none'
+      detailCards.style.display = "block";
+      allFlagContainer.style.display = "none";
+      inputGroup.style.display = "none";
+      dropDown.style.display = "none";
 
       detailCardContent.innerHTML = `<div class="flag-img mt-5 col-md-6">
         <img class="card-detail-img w-100" src="${this.flagImg}" alt="country-flags">
@@ -115,32 +122,33 @@ class CardContent { // 0 indexi olmayanlara (try catch) hata kontrolü uygula pa
             <p class="fw-bold">Border Countries <i class="fa-solid fa-angles-down" style="color: darkorange;"></i></p>
             
         </div>
-        </div>`
+        </div>`;
+/*  komşu ülkelerdeki cioc ları normal ülke ismine çevirerek button içine yazdır*/
+      if (this.borderCountry != undefined) {
+        this.borderCountry.forEach((borderName) => {
+          const borderContainer = document.querySelector(".border-container");
+          const borderButton = document.createElement("button");
+          borderButton.className = "btn btn-outline-info shadow m-1";
+          borderButton.innerHTML = `${borderName}`;
+          borderContainer.appendChild(borderButton);
+        });
+      } else {
+        const borderContainer = document.querySelector(".border-container");
+        const borderButton = document.createElement("button");
+        borderButton.className = "btn btn-outline-info shadow m-1";
+        borderButton.style.color = "tomato";
+        borderButton.style.borderColor = "tomato";
+        borderButton.innerHTML = `This is an island country`;
+        borderContainer.appendChild(borderButton);
+      }
 
-        /* <button class="btn btn-outline-info shadow m-1">${this.borderCountry}</button> */
-
-        const borderContainer = document.querySelector('.border-container')
-        const borderButton = document.createElement('button')
-        borderButton.className = ('btn btn-outline-info shadow m-1')
-        borderButton.innerHTML = `${this.borderCountry[0]}`
-
-        borderContainer.appendChild(borderButton)
-
-      const backBtn = document.querySelector('.back-btn')
-      backBtn.addEventListener('click', () => {
-        detailCards.style.display = "none"
-        allFlagContainer.style.display = "block"
-        inputGroup.style.display = 'flex'
-        dropDown.style.display = 'block'
-      })
-    })
-
-
-    
+      const backBtn = document.querySelector(".back-btn");
+      backBtn.addEventListener("click", () => {
+        detailCards.style.display = "none";
+        allFlagContainer.style.display = "block";
+        inputGroup.style.display = "flex";
+        dropDown.style.display = "block";
+      });
+    });
   }
-
 }
-
-//CardContent.prototype.cardContentFunc()
-
-/* şuan ki yol çok efektif olmadı tüm dom elemanlarını bir class ta proporty olarak ekle ve öylelikle çağır */
