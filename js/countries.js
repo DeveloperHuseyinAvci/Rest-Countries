@@ -57,8 +57,9 @@ class CardContent {
     } catch (error) {
       console.log("");
     }
-
+    
     this.cardContentFunc();
+    this.searchBar();
   }
 
   cardContentFunc() {
@@ -69,7 +70,7 @@ class CardContent {
 
     card.className = "card p-0 shadow m-3";
     card.style = "width: 14rem";
-    card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
+   let cardInner = card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
         <div class="card-body">
           <h5 class="card-title fw-bolder p-2" id="country-name">
             ${this.countryName}
@@ -90,7 +91,7 @@ class CardContent {
         </div>`;
 
     cardContent.appendChild(card);
-    console.log(this.cioc);
+    //console.log(this.cioc);  BURAYA DAHA SONRA BAK
     // console.log(this.borderCountry === this.cioc);
     
     card.addEventListener("click", () => {
@@ -150,5 +151,26 @@ class CardContent {
         dropDown.style.display = "block";
       });
     });
+
+    this.searchBar(cardInner)
   }
+// duyarlı searchbar burda hata var filterSearch return olmuyor undefined bilgisi alınıyor
+  searchBar(cards){
+    
+    const searchInput = document.querySelector('.form-control')
+    const countryNameArr = []
+    countryNameArr.push(this.countryName)
+    console.log(countryNameArr);
+    
+    searchInput.addEventListener('keyup',(e) =>{
+      const searchString = e.target.value
+      const filterName = countryNameArr.filter((name)=>{
+        return name.includes(searchString)
+      })
+        
+    })
+    
+  }
+ 
 }
+
