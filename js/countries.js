@@ -57,20 +57,21 @@ class CardContent {
     } catch (error) {
       console.log("");
     }
-    
+
     this.cardContentFunc();
-    this.searchBar();
   }
 
   cardContentFunc() {
     const inputGroup = document.querySelector(".input-group");
     const dropDown = document.querySelector(".dropdown");
     const cardContent = document.querySelector(".card-content");
+    const searchBar = document.querySelector(".form-control");
+
     const card = document.createElement("div");
 
     card.className = "card p-0 shadow m-3";
     card.style = "width: 14rem";
-   let cardInner = card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
+    let cardInner = (card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
         <div class="card-body">
           <h5 class="card-title fw-bolder p-2" id="country-name">
             ${this.countryName}
@@ -88,12 +89,12 @@ class CardContent {
               >${this.capital}</span
             >
           </p>
-        </div>`;
+        </div>`);
 
     cardContent.appendChild(card);
     //console.log(this.cioc);  BURAYA DAHA SONRA BAK
     // console.log(this.borderCountry === this.cioc);
-    
+
     card.addEventListener("click", () => {
       const allFlagContainer = document.querySelector(".flag-cont");
       const detailCards = document.querySelector(".detail-card");
@@ -109,7 +110,7 @@ class CardContent {
         </div>
         
         <div class="card-body p-4 col-md-4" style="width: 0rem;">
-        <h3 class="card-title fw-bolder">${this.countryName}</h3>
+        <h3 class="card-title fw-bolder" id="country-name">${this.countryName}</h3>
         <p class="card-text fw-bold">Native Name: <span class="fw-lighter">${this.nativeName}</span></p>
         <p class="card-text fw-bold">Population: <span class="fw-lighter">${this.population}</span></p>
         <p class="card-text fw-bold">Region: <span class="fw-lighter">${this.region}</span></p>
@@ -124,7 +125,7 @@ class CardContent {
             
         </div>
         </div>`;
-/*  komşu ülkelerdeki cioc ları normal ülke ismine çevirerek button içine yazdır*/
+      /*  komşu ülkelerdeki cioc ları normal ülke ismine çevirerek button içine yazdır*/
       if (this.borderCountry != undefined) {
         this.borderCountry.forEach((borderName) => {
           const borderContainer = document.querySelector(".border-container");
@@ -152,25 +153,21 @@ class CardContent {
       });
     });
 
-    this.searchBar(cardInner)
-  }
-// duyarlı searchbar burda hata var filterSearch return olmuyor undefined bilgisi alınıyor
-  searchBar(cards){
-    
-    const searchInput = document.querySelector('.form-control')
-    const countryNameArr = []
-    countryNameArr.push(this.countryName)
-    console.log(countryNameArr);
-    
-    searchInput.addEventListener('keyup',(e) =>{
-      const searchString = e.target.value
-      const filterName = countryNameArr.filter((name)=>{
-        return name.includes(searchString)
+    // Sensitive searchbar
+  
+   
+    searchBar.addEventListener("keyup", (e) => {
+      const searchString = e.target.value;
+     // console.log(searchString.charAt(0).toUpperCase() + searchString.slice(1));
+      if(this.countryName.includes(searchString.charAt(0).toUpperCase() + searchString.slice(1))){
+        cardContent.appendChild(card);
+      }else{
+        card.remove()
+      }
       })
-        
-    })
-    
+      
+   
   }
- 
 }
+
 
