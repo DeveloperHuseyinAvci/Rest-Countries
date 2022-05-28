@@ -66,7 +66,10 @@ class CardContent {
     const dropDown = document.querySelector(".dropdown");
     const cardContent = document.querySelector(".card-content");
     const searchBar = document.querySelector(".form-control");
-
+    const dropDownMenu = document.querySelectorAll('.dropdown-item')
+    const darkMode = document.getElementById('dark-mode-btn')
+    const body = document.querySelector('.bg-light')
+    
     const card = document.createElement("div");
 
     card.className = "card p-0 shadow m-3";
@@ -158,14 +161,33 @@ class CardContent {
    
     searchBar.addEventListener("keyup", (e) => {
       const searchString = e.target.value;
-     // console.log(searchString.charAt(0).toUpperCase() + searchString.slice(1));
+     
       if(this.countryName.includes(searchString.charAt(0).toUpperCase() + searchString.slice(1))){
         cardContent.appendChild(card);
       }else{
         card.remove()
       }
       })
+
+      // Region section
+     
+     dropDownMenu.forEach(item =>{
+        item.addEventListener('click',()=>{
+          if(item.textContent === this.region){
+            cardContent.appendChild(card)
+          }else{
+            card.remove()
+          }
+        })
+     })
       
+     
+
+     darkMode.addEventListener('click',()=>{
+      const bodyColor = body.classList
+      bodyColor.toggle("bg-dark")
+     
+     })
    
   }
 }
