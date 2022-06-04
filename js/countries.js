@@ -66,15 +66,14 @@ class CardContent {
     const dropDown = document.querySelector(".dropdown");
     const cardContent = document.querySelector(".card-content");
     const searchBar = document.querySelector(".form-control");
-    const dropDownMenu = document.querySelectorAll('.dropdown-item')
-    const darkMode = document.getElementById('dark-mode-btn')
-    const body = document.querySelector('.bg-light')
-    
+    const dropDownMenu = document.querySelectorAll(".dropdown-item");
+
     const card = document.createElement("div");
 
     card.className = "card p-0 shadow m-3";
     card.style = "width: 14rem";
-    let cardInner = (card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
+    let cardInner =
+      (card.innerHTML = `<img src="${this.flagImg}" class="card-img-top w-100 h-100" alt="countries-img" />
         <div class="card-body">
           <h5 class="card-title fw-bolder p-2" id="country-name">
             ${this.countryName}
@@ -95,6 +94,8 @@ class CardContent {
         </div>`);
 
     cardContent.appendChild(card);
+
+    const dene = new DarkMode(card);
     //console.log(this.cioc);  BURAYA DAHA SONRA BAK
     // console.log(this.borderCountry === this.cioc);
 
@@ -157,39 +158,59 @@ class CardContent {
     });
 
     // Sensitive searchbar
-  
-   
+
     searchBar.addEventListener("keyup", (e) => {
       const searchString = e.target.value;
-     
-      if(this.countryName.includes(searchString.charAt(0).toUpperCase() + searchString.slice(1))){
+
+      if (
+        this.countryName.includes(
+          searchString.charAt(0).toUpperCase() + searchString.slice(1)
+        )
+      ) {
         cardContent.appendChild(card);
-      }else{
-        card.remove()
+      } else {
+        card.remove();
       }
-      })
+    });
 
-      // Region section
-     
-     dropDownMenu.forEach(item =>{
-        item.addEventListener('click',()=>{
-          if(item.textContent === this.region){
-            cardContent.appendChild(card)
-          }else{
-            card.remove()
-          }
-        })
-     })
-      
-     
+    // Region section
 
-     darkMode.addEventListener('click',()=>{
-      const bodyColor = body.classList
-      bodyColor.toggle("bg-dark")
-     
-     })
-   
+    dropDownMenu.forEach((item) => {
+      item.addEventListener("click", () => {
+        if (item.textContent === this.region) {
+          cardContent.appendChild(card);
+        } else {
+          card.remove();
+        }
+      });
+    });
   }
 }
 
+class DarkMode {
+  constructor(card) {
+    this.card = card;
+    this.screenMode();
+  }
+  screenMode() {
+    const darkMode = document.querySelector(".dark-mode-btn");
+    const body = document.querySelector(".body");
+    const navColor = document.querySelector("#nav");
+    const inpSearch = document.querySelector(".form-control");
+    const inpIcon = document.querySelector(".inp-icon");
+    const dropMenu = document.querySelector(".drop-menu");
+    
 
+    darkMode.addEventListener("click", () => {
+      body.classList.toggle("dark-dark");
+      navColor.classList.toggle("dark-light");
+      darkMode.classList.toggle("dark-mode-white");
+      inpSearch.classList.toggle("form-dark");
+      inpIcon.classList.toggle("inp-icon-dark");
+      dropMenu.classList.toggle("drop-menu-dark")
+      
+      this.card.classList.toggle("dark-light");
+    });
+  }
+}
+DarkMode.prototype.screenMode();

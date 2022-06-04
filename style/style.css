@@ -1,17 +1,72 @@
-.card-content .card:hover{
-    cursor: pointer;
-    animation: cardAnimation 1s linear infinite;
-   
+.card-content .card:hover {
+  cursor: pointer;
+  animation: cardAnimation 1s linear infinite;
 }
 
 @keyframes cardAnimation {
-   
-    50%{
-        opacity: 0.5;
-    }
-    
+  50% {
+    opacity: 0.5;
   }
+}
 
-  .card-content .card:active{
-    cursor: help;
+.card-content .card:active {
+  cursor: help;
+}
+
+.active {
+  background-color: hsl(207, 26%, 17%);
+}
+
+.dark-dark {
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+  transition: all 1s ease-in-out;
+}
+.dark-light {
+  background-color: hsl(209, 23%, 22%);
+  color: hsl(0, 0%, 100%);
+  transition: all 1s ease-in-out;
+}
+.dark-mode-btn:hover{
+  color: aqua;
+}
+.dark-mode-white{
+  color: hsl(0, 0%, 100%);
+  transition: all 1s ease-in-out;
+}
+.inp-icon{
+  background-color: rgb(245, 245, 245);
+}
+.inp-icon-dark{
+  background-color:hsl(209, 23%, 22%) ;
+  color: hsl(0, 0%, 100%);
+  border:hsl(209, 23%, 22%)  ;
+  transition: all 1s ease-in-out;
+}
+.form-bg{
+  background-color: rgb(245, 245, 245);
+}
+.form-dark{
+  background-color: hsl(209, 23%, 22%);
+  border:hsl(209, 23%, 22%) ;
+  transition: all 1s ease-in-out;
+}
+.form-dark::placeholder{
+  color:hsl(0, 0%, 100%) ;
+}
+.drop-menu{
+  background-color: rgb(245, 245, 245);
+  border: 1px solid hsl(0, 0%, 84%);
+}
+.drop-menu-dark{
+  background-color: hsl(209, 23%, 22%);
+  border: 1px solid hsl(209, 23%, 22%);
+  color:hsl(0, 0%, 100%) ;
+  transition: all 1s ease-in-out;
+}
+.dropdown-menu{
+  background-color: hsl(209, 23%, 22%);
+}
+.dropdown-item{
+  color:hsl(0, 0%, 100%);
 }

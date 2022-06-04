@@ -31,12 +31,12 @@
 
     <title>Rest Countries</title>
   </head>
-  <body class="bg bg-light">
+  <body class="body">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div class="container-fluid">
+    <nav id="nav" class="navbar navbar-expand-lg shadow-sm">
+      <div id="nav-content" class="container-fluid">
         <a href="#" class="navbar-brand p-3 fw-bold">Where in the world?</a>
-        <a id="dark-mode-btn" class="btn text-dark fw-bold p-3">
+        <a class="btn fw-bold p-3 dark-mode-btn">
           <i class="fa-solid fa-moon"></i>Dark Mode</a>
       </div>
     </nav>
@@ -45,14 +45,14 @@
       <div class="d-flex justify-content-around flex-lg-row">
 
       <div class="input-group w-50">
-        <span class="input-group-text bg-light border-end-0" id="addon-wrapping"><i class="fa-solid fa-magnifying-glass-location"></i></span>
-        <input class="form-control bg-light border-start-0" placeholder="Search for a country..." type="text" />
+        <span class="input-group-text inp-icon border-end-0" id="addon-wrapping"><i class="fa-solid fa-magnifying-glass-location"></i></span>
+        <input class="form-control form-bg border-start-0" placeholder="Search for a country..." type="text" />
       </div>
 
       <!-- responsivi ayarla -->
 
-      <div class="dropdown ">
-        <a class="btn btn-light border dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown" >
+        <a class="dropdown-toggle btn  btn-light drop-menu" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           Filter by Region
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
