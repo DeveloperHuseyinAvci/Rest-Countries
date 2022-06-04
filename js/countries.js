@@ -5,7 +5,7 @@ class CountryApi {
     const dataObject = await apiData.json();
 
     dataObject.forEach((object) => {
-      //console.log(object);
+
       const cardData = new CardContent(
         object.flag,
         object.name,
@@ -15,9 +15,9 @@ class CountryApi {
         object.nativeName,
         object.subregion,
         object.topLevelDomain,
-        object.currencies, // hata kontrolü uygula (try & catch)
-        object.languages, // hata kontrolü uygula (try & catch)
-        object.borders, // hata kontrolü uygula  (try & catch)
+        object.currencies, 
+        object.languages, 
+        object.borders, 
         object.cioc
       );
     });
@@ -96,8 +96,7 @@ class CardContent {
     cardContent.appendChild(card);
 
     const dene = new DarkMode(card);
-    //console.log(this.cioc);  BURAYA DAHA SONRA BAK
-    // console.log(this.borderCountry === this.cioc);
+  
 
     card.addEventListener("click", () => {
       const allFlagContainer = document.querySelector(".flag-cont");
@@ -129,7 +128,7 @@ class CardContent {
             
         </div>
         </div>`;
-      /*  komşu ülkelerdeki cioc ları normal ülke ismine çevirerek button içine yazdır*/
+
       if (this.borderCountry != undefined) {
         this.borderCountry.forEach((borderName) => {
           const borderContainer = document.querySelector(".border-container");
